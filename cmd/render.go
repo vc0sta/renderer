@@ -16,7 +16,6 @@ limitations under the License.
 package cmd
 
 import (
-	// "log"
 	// "net/http"
 	// "os"
 	// "time"
@@ -28,7 +27,6 @@ import (
 	"text/template"
 
 	"fmt"
-	"github.com/mitchellh/mapstructure"
 	"github.com/spf13/cobra"
 )
 
@@ -74,29 +72,7 @@ func CallRendering(args []string) {
 
 	data := v.(map[string]interface{})
 
-	// for k, v := range data {
-	// switch v := v.(type) {
-	// case string:
-	// fmt.Println(k, v, "(string)")
-	// case float64:
-	// fmt.Println(k, v, "(float64)")
-	// case []interface{}:
-	// fmt.Println(k, "(array):")
-	// for i, u := range v {
-	// fmt.Println("    ", i, u)
-	// }
-	// default:
-	// fmt.Println(k, v, "(unknown)")
-	// }
-	// }
-
-	var values interface{}
-
-	mapstructure.Decode(data, &values)
-
-	fmt.Printf("%+v", values)
-
-	result, err := RenderFolder(values, templates, recursive)
+	result, err := RenderFolder(data, templates, recursive)
 
 	if err != nil {
 		fmt.Println(err.Error())

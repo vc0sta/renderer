@@ -1,14 +1,16 @@
-{
-  "ID": "300b51d6-ed02-4b91-9a35-3a49d2dbbf55",
-  "Slug": "metabase-1",
-  "Type": "METABASE",
-  "Platform": "K8S",
-  "ResourceGroup": {
-    "ID": "6eac91d2-2fe2-4ca0-9d3c-f1c8fb3c10bb",
-    "Slug": "semantix-sa-6eac91d2-2fe2-4ca0-9d3c-f1c8fb3c10bb",
-    "CompanyID": "c948b2de-7957-432c-b542-d31ddce4df14",
-    "cpuLimit": "256Mi",
-    "memoryLimit": "1Gi"
-  }
+{ 
+  "Body": {
+      "ID": "300b51d6-ed02-4b91-9a35-3a49d2dbbf55",
+      "Slug": "metabase-1",
+      "Type": "METABASE",
+      "Platform": "K8S",
+      "ResourceGroup": {
+        "ID": "6eac91d2-2fe2-4ca0-9d3c-f1c8fb3c10bb",
+        "Slug": "semantix-sa-6eac91d2-2fe2-4ca0-9d3c-f1c8fb3c10bb",
+        "CompanyID": "c948b2de-7957-432c-b542-d31ddce4df14",
+        "cpuLimit": "256Mi",
+        "memoryLimit": "1Gi"
+      }  
+   }
 }
 
