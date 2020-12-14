@@ -28,7 +28,7 @@ import (
 	"log"
 	"fmt"
 	"github.com/spf13/cobra"
-	"strings"
+	// "strings"
 )
 
 func init() {
@@ -88,13 +88,13 @@ func CallRendering(args []string) {
 
 }
 
-// CreaRenderizedFile 
+// CreateRenderizedFile create a folder with all the renderize templates.
 func CreateRenderizedFile(path string, result []byte) error {
-	str := strings.Split(path, "/")
-	str = str[:len(str) - 1]
-	original_path := strings.Join(str, "/")
+	// str := strings.Split(path, "/")
+	// str = str[:len(str) - 1]
+	// original_path := strings.Join(str, "/")
 
-	err := os.MkdirAll(original_path, 0755)
+	err := os.MkdirAll(filepath.Dir(path), 0755)
 	if err != nil {
 		log.Fatal(err)
 }
