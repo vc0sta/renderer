@@ -25,9 +25,10 @@ import (
 	"os"
 	"path/filepath"
 	"text/template"
-
+	"log"
 	"fmt"
 	"github.com/spf13/cobra"
+	"strings"
 )
 
 func init() {
@@ -60,7 +61,7 @@ var (
 func init() {
 	RenderCmd.Flags().StringVar(&values, "values", "values.json", "file containing the message with the values")
 	RenderCmd.Flags().StringVar(&templates, "templates", "template", "folder containing the templates to be renderized")
-	RenderCmd.Flags().BoolVar(&recursive, "recursive", false, "should we use templates from all subdirs?")
+	RenderCmd.Flags().BoolVar(&recursive, "recursive", true, "should we use templates from all subdirs?")
 }
 
 func CallRendering(args []string) {
@@ -81,10 +82,32 @@ func CallRendering(args []string) {
 
 	// Prints renderized template
 	for _, v := range result {
-
+		
 		fmt.Println(string(v))
 	}
+
 }
+
+// CreaRenderizedFile 
+func CreateRenderizedFile(path string, result []byte) error {
+	str := strings.Split(path, "/")
+	str = str[:len(str) - 1]
+	original_path := strings.Join(str, "/")
+
+	err := os.MkdirAll(original_path, 0755)
+	if err != nil {
+		log.Fatal(err)
+}
+	os.Create(path)
+	f, err := os.OpenFile(path, os.O_APPEND|os.O_WRONLY, 0644)
+	if err != nil {
+		fmt.Println(err)
+		return err
+	}
+	fmt.Fprintln(f, string(result))
+	return nil
+}	
+
 
 // ReadFile receives a canonical path to a file and returns its containts as a []byte
 func ReadFile(file string) ([]byte, error) {
@@ -109,6 +132,10 @@ func RenderTemplate(values interface{}, file string) ([]byte, error) {
 
 	if err != nil {
 		// log.Error(err)
+		return []byte{}, err
+	}
+	err = CreateRenderizedFile("out/" + file, tpl.Bytes())
+	if err != nil {
 		return []byte{}, err
 	}
 

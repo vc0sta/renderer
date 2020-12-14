@@ -1,0 +1,10 @@
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: semantix-sa-6eac91d2-2fe2-4ca0-9d3c-f1c8fb3c10bb
+  labels:
+    resource-group: 6eac91d2-2fe2-4ca0-9d3c-f1c8fb3c10bb
+    company-id: c948b2de-7957-432c-b542-d31ddce4df14
+    istio-injection: enabled
+
